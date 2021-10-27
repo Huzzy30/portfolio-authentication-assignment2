@@ -1,0 +1,75 @@
+<div class="m-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="/home" class="navbar-brand">
+                <img src="../../assest/logo.jpg" height="28" alt="Express Protfolio">
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                  
+                  <% if (title == "Home"){ %>
+                    <li class="nav-item active">
+                      <% } else { %>
+                    <li class="nav-item">
+                      <% } %>
+                      <a class="nav-link" href="/home"><i class="fas fa-lg fa-laptop-house"></i> Home</a>
+                    </li>
+
+                    <% if (title == "About Me"){ %>
+                      <li class="nav-item active">
+                        <% } else { %>
+                      <li class="nav-item">
+                        <% } %>
+                        <a class="nav-link" href="/about"><i class="fas fa-info-circle"></i> About Me</a>
+                      </li>
+              
+                      <% if (title == "Projects"){ %>
+                      <li class="nav-item active">
+                        <% } else { %>
+                      <li class="nav-item">
+                        <% } %>
+                        <a class="nav-link" href="/projects"><i class="fab fa-elementor"></i> Projects</a>
+                      </li>
+              
+                      <% if (title == "Services"){ %>
+                      <li class="nav-item active">
+                        <% } else { %>
+                      <li class="nav-item">
+                        <% } %>
+                        <a class="nav-link" href="/services"><i class="fas fa-cogs"></i> Services</a>
+                      </li>
+              
+                      <% if (title == "Contact Me"){ %>
+                      <li class="nav-item active">
+                        <% } else { %>
+                      <li class="nav-item">
+                        <% } %>
+                        <a class="nav-link" href="/contact"><i class="fas fa-mobile-alt"></i> Contact Me</a>
+                      </li>
+
+                      <% if (title == "Contact List"){ %>
+                        <li class="nav-item active">
+                          <% } else { %>
+                        <li class="nav-item">
+                          <% } %>
+                          <a class="nav-link" href="/businesscontactlist"><i class="fas fa-mobile-alt"></i> Business Contact List</a>
+                        </li>
+                </div> 
+                
+                
+                  <% if (title == "Login"){ %>
+                    <div class="nav-item active ms-auto">
+                    <% } else { %>
+                    <li class="nav-item ms-auto"></li>
+                    <% } %>
+                    <a href="/login" class="nav-link"><i class="fas fa-mobile-alt"></i> Login</a>
+               
+             
+              </div>
+            </div>
+        </div>
+    </nav>
+  </div>
