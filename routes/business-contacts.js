@@ -112,7 +112,7 @@ router.get('/delete',requireAuth,function(req, res, next)
 {
     let id = req.query.id;
 
-    BusinessContact.remove({_id: id}, (err) => {
+    BusinessContact.deleteOne({_id: id}, (err) => {
         if(err)
         {
             console.log(err);
