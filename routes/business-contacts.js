@@ -1,15 +1,25 @@
+const { Router } = require('express');
 var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 
 let BusinessContact = require('../models/contact');
 
-/* GET Route for the Business Contact List page - READ Operation */
-router.get('/',function(req, res, next) 
+
+function requireAuth(req, res, next)
 {
-    console.log(req.user);
-    if(req.user)
+    // check if the user is logged in
+    if(!req.isAuthenticated())
     {
+        return res.redirect('/user/login');
+    }
+    next();
+}
+
+
+/* GET Route for the Business Contact List page - READ Operation */
+router.get('/',requireAuth,function(req, res, next) 
+{
         BusinessContact.find((err, contactList) => {
             if(err)
             {
@@ -20,21 +30,16 @@ router.get('/',function(req, res, next)
                 res.render('business-contact-views/listcontacts', { title: 'Contact List', user: "Logout", ContactList: contactList});
             }
         }).sort({"name":1});
-    }
-    else
-    {
-        return res.redirect('/user/login');
-    }
 });
 
 
-router.get('/add',function(req, res, next) 
+router.get('/add',requireAuth,function(req, res, next) 
 {
         res.render('business-contact-views/addcontact', { title: 'Contact Add', user: "Logout" })
 });
 
 
-router.post('/add',function(req, res, next)
+router.post('/add',requireAuth,function(req, res, next)
 {
     let newContact = BusinessContact({
         "name": req.body.name,
@@ -58,23 +63,37 @@ router.post('/add',function(req, res, next)
 
 
 
-// router.get('/update',function(req, res, next) 
-// {
-//     if(req.username != "")
-//     {
-//         return res.redirect('/user/login');
-//     }
-//     else
-//     {
-//         res.render('business-contact-views/updatecontact', { title: 'Contact Update' })
-//     }
-// });
-
-router.post('/update/:id',function(req, res, next) 
+router.get('/update',requireAuth,function(req, res, next) 
 {
-    let id = req.params.id;
+        let id = req.query.id;
+        console.log(id);
+        BusinessContact.findById(id, (err, contactToEdit) => {
+            console.log(contactToEdit);
+            if(err)
+            {
+                console.log(err);
+                res.end(err);
+            }
+            else
+            {
+               
+                //show the edit view
+                //res.redirect('/business-contacts');
+                res.render('business-contact-views/updatecontact', { title: 'Contact Update',user: "Logout", businessContact: contactToEdit })
+            }
+     });    
+ });
 
-    BusinessContact.findById(id, (err, contactToEdit) => {
+router.post('/update',requireAuth,function(req, res, next) 
+{
+    let id = req.query.id;
+    let updatedContact = BusinessContact({
+        "_id": id,
+        "name": req.body.name,
+        "number": req.body.number,
+        "email": req.body.email
+    });
+    BusinessContact.updateOne({_id: id}, updatedContact, (err) => {
         if(err)
         {
             console.log(err);
@@ -83,9 +102,28 @@ router.post('/update/:id',function(req, res, next)
         else
         {
             //show the edit view
-            res.render('/business-contacts/edit/:id', {title: 'Contact Update'})
+            res.redirect('/business-contacts');
+            //res.render('business-contact-views/listcontacts', {title: 'Contact Update',user: "Logout" })
         }
 });
+});
+
+router.get('/delete',requireAuth,function(req, res, next) 
+{
+    let id = req.query.id;
+
+    BusinessContact.remove({_id: id}, (err) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+             // refresh the business contact list
+             res.redirect('/business-contacts');
+        }
+    });
 });
 
 

@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-
 /* GET Home page. */
 router.get('/', function(req, res, next) {
-    if(req.user)
+    if(req.isAuthenticated())
     {
         res.render('index', { title: 'Home' ,user: 'Logout'});
     }
@@ -16,7 +15,7 @@ router.get('/', function(req, res, next) {
 });
 /* GET Home page. */
 router.get("/home", function(req, res, next) {
-    if(req.user)
+    if(req.isAuthenticated())
     {
         res.render('index', { title: 'Home' ,user: 'Logout'});
     }
@@ -27,7 +26,7 @@ router.get("/home", function(req, res, next) {
 });
 /* GET Service page. */
 router.get("/services", function(req, res, next) {
-    if(req.user)
+    if(req.isAuthenticated())
     {
         res.render('content/services', { title: 'Services' ,user: 'Logout' });
     }
@@ -38,7 +37,7 @@ router.get("/services", function(req, res, next) {
 });
 /* GET Project page. */
 router.get("/projects", function(req, res, next) {
-    if(req.user)
+    if(req.isAuthenticated())
     {
         res.render('content/projects', { title: 'Projects',user: 'Logout' });
     }
@@ -49,7 +48,7 @@ router.get("/projects", function(req, res, next) {
 });
 /* GET About page. */
 router.get("/about", function(req, res, next) {
-    if(req.user)
+    if(req.isAuthenticated())
     {
         res.render('content/about', { title: 'About Me' ,user: 'Logout'});
     }
@@ -60,7 +59,7 @@ router.get("/about", function(req, res, next) {
 });
 /* GET Contact page. */
 router.get("/contact", function(req, res, next) {
-    if(req.user)
+    if(req.isAuthenticated())
     {
         res.render('content/contact', { title: 'Contact Me',user: 'Logout' });
     }

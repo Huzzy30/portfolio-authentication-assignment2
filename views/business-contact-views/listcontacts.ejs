@@ -26,11 +26,11 @@
                         <td class="text-center col-3"><%= ContactList[count].number %></td>
                         <td class="text-center col-5"><%= ContactList[count].email %></td>
                         <td class="text-center col-1">
-                            <a href="/business-contacts/update/<%= ContactList[count]._id %>" class="btn btn-primary btn-sm">
+                            <a href="/business-contacts/update/?id=<%= ContactList[count]._id %>" class="btn btn-primary btn-sm">
                             <i class="fas fa-pencil-alt"></i> Edit</a>
                         </td>
                         <td class="text-center col-1">
-                            <a href="/business-contacts/update/<%= ContactList[count]._id %>" class="btn btn-danger btn-sm delete-button">
+                            <a href="/business-contacts/delete/?id=<%= ContactList[count]._id %>" class="btn btn-danger btn-sm delete-button">
                             <i class="fas fa-trash-alt"></i> Delete</a>
                         </td>
                     </tr>
