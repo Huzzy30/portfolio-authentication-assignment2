@@ -1,4 +1,15 @@
+/*******************************************************************************************************
+*                                                                                                      *
+*           File name     :  db.js                                                               *
+*           Student name :  Huzaifah Mahifa                                                           *
+*           StudentID     :  300747824                                                                 *
+*           Date  :  10/26/2021                                                                         *
+*                                                                                                      *
+********************************************************************************************************/
+
+
+//Define the database connection string 
+
 module.exports = {
     "URI": "mongodb://localhost/assignment2Database"
-    //"URI":"mongodb+srv://ash:lK5JCz1r7dbKy78a@mongodbserver.tiafv.mongodb.net/business?retryWrites=true&w=majority"
 }

@@ -1,3 +1,14 @@
+/*******************************************************************************************************
+*                                                                                                      *
+*           File name     :  user.js                                                               *
+*           Student name :  Huzaifah Mahifa                                                           *
+*           StudentID     :  300747824                                                                 *
+*           Date  :  10/26/2021                                                                         *
+*                                                                                                      *
+********************************************************************************************************/
+
+
+
 // require modules for the User Model
 let mongoose = require('mongoose');
 let passportLocalMongoose = require('passport-local-mongoose');

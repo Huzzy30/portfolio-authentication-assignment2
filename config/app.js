@@ -1,3 +1,15 @@
+/*******************************************************************************************************
+*                                                                                                      *
+*           File name     :  app.js                                                               *
+*           Student name :  Huzaifah Mahifa                                                           *
+*           StudentID     :  300747824                                                                 *
+*           Date  :  10/26/2021                                                                         *
+*                                                                                                      *
+********************************************************************************************************/
+
+
+// import required libraries
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -28,7 +40,7 @@ var app = express();
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
-
+// setup urlencode cookieparser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -44,7 +56,7 @@ app.use(session({
   cookie:{secure:false, maxAge:60000}
 }));
 
-
+//Setup Local Strategy for Authentication
 passport.use(new localStratgy(
   function(username, password, done){
     User.findOne({ username: username }, function(err,user){
@@ -64,18 +76,19 @@ passport.use(new localStratgy(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Setup different routes in router
 app.use('/',router);
 app.use('/business-contacts', bcontactsRouter);
 app.use('/user', userRouter);
 
-// Serialize and Deserialize the User Info
+// Serialize the User Info
 passport.serializeUser((user,done)=>{
   if(user){
     return done(null,user.id);
   }
   return done(null,false);
 });
-
+// Deserialize the User Info
 passport.deserializeUser((id,done)=>{
   User.findById(id,(err,user)=>{
     if(err) return done(null,false);

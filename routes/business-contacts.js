@@ -1,3 +1,13 @@
+/*******************************************************************************************************
+*                                                                                                      *
+*           File name     :  business-contacts.js                                                               *
+*           Student name :  Huzaifah Mahifa                                                           *
+*           StudentID     :  300747824                                                                 *
+*           Date  :  10/26/2021                                                                         *
+*                                                                                                      *
+********************************************************************************************************/
+
+
 const { Router } = require('express');
 var express = require('express');
 var router = express.Router();
@@ -32,13 +42,13 @@ router.get('/',requireAuth,function(req, res, next)
         }).sort({"name":1});
 });
 
-
+/* GET Route for the Business Contact Add page*/
 router.get('/add',requireAuth,function(req, res, next) 
 {
         res.render('business-contact-views/addcontact', { title: 'Contact Add', user: "Logout" })
 });
 
-
+/* POST Route for the Business Contact Add page*/
 router.post('/add',requireAuth,function(req, res, next)
 {
     let newContact = BusinessContact({
@@ -62,7 +72,7 @@ router.post('/add',requireAuth,function(req, res, next)
 });
 
 
-
+/* GET Route for the Business Contact Update page*/
 router.get('/update',requireAuth,function(req, res, next) 
 {
         let id = req.query.id;
@@ -83,7 +93,7 @@ router.get('/update',requireAuth,function(req, res, next)
             }
      });    
  });
-
+/* POST Route for the Business Contact Update page*/
 router.post('/update',requireAuth,function(req, res, next) 
 {
     let id = req.query.id;
@@ -108,6 +118,7 @@ router.post('/update',requireAuth,function(req, res, next)
 });
 });
 
+/* GET Route for the Business Contact Delete page*/
 router.get('/delete',requireAuth,function(req, res, next) 
 {
     let id = req.query.id;
