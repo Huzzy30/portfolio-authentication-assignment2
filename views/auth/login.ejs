@@ -1,22 +1,22 @@
-<%- include('partials/header') -%>
-<%- include('partials/navbar') -%>
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
 
 
 <div class="container">
     <main class="form-signin">
-        <form class="container">
+        <form action="/user/login" method="POST" autocomplete="off" class="container">
         
             <div class="text-center">  
-                <img  class="mb-4" src="assest/loginlogo.png" alt="" width="100" height="100">
+                <img  class="mb-4" src="../assets/loginlogo.png" alt="" width="100" height="100">
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
             </div>
         <div class="form-floating ">
-            <input class="form-control" id="floatingInput" placeholder="Username">
+            <input class="form-control" id="floatingInput" name="username" placeholder="Username">
             <label for="floatingInput">Username</label>
         </div>
         
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
             <label for="floatingPassword">Password</label>
         </div>
         
@@ -26,7 +26,10 @@
             </label>
         </div>
         <div class="text-center">  
-        <button class="w-50 btn btn-lg btn-primary " type="submit">Sign in</button>
+        <div>
+        <button class="w-25 btn btn-lg btn-primary " type="submit" value="Login">Login</button>
+        <a class="w-25 btn btn-lg btn-danger" href="/" role="button">Cancel</a>
+        </div>
         <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
         </div>
         
@@ -38,4 +41,4 @@
 
 
 
-<%- include('partials/footer') -%>
+<%- include('../partials/footer') -%>

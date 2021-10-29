@@ -4,38 +4,70 @@ var router = express.Router();
 
 /* GET Home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Home' });
+    if(req.user)
+    {
+        res.render('index', { title: 'Home' ,user: 'Logout'});
+    }
+    else
+    {
+        res.render('index', { title: 'Home' ,user: ''});
+    }
+
 });
 /* GET Home page. */
 router.get("/home", function(req, res, next) {
-    res.render('index', { title: 'Home' });
+    if(req.user)
+    {
+        res.render('index', { title: 'Home' ,user: 'Logout'});
+    }
+    else
+    {
+        res.render('index', { title: 'Home' ,user: ''});
+    }
 });
 /* GET Service page. */
 router.get("/services", function(req, res, next) {
-    res.render('services', { title: 'Services' });
+    if(req.user)
+    {
+        res.render('content/services', { title: 'Services' ,user: 'Logout' });
+    }
+    else
+    {
+        res.render('content/services', { title: 'Services' ,user: '' });
+    }
 });
 /* GET Project page. */
 router.get("/projects", function(req, res, next) {
-    res.render('projects', { title: 'Projects' });
+    if(req.user)
+    {
+        res.render('content/projects', { title: 'Projects',user: 'Logout' });
+    }
+    else
+    {
+        res.render('content/projects', { title: 'Projects',user: '' });
+    }
 });
 /* GET About page. */
 router.get("/about", function(req, res, next) {
-    res.render('about', { title: 'About Me' });
+    if(req.user)
+    {
+        res.render('content/about', { title: 'About Me' ,user: 'Logout'});
+    }
+    else
+    {
+        res.render('content/about', { title: 'About Me' ,user: ''});
+    }
 });
 /* GET Contact page. */
 router.get("/contact", function(req, res, next) {
-    res.render('contact', { title: 'Contact Me' });
-});
-
-
-/* GET Login page. */
-router.get("/login", function(req, res, next) {
-    res.render('login', { title: 'Login' });
-});
-
-/* GET Business Contact List page. */
-router.get("/businesscontactlist", function(req, res, next) {
-    res.render('businesscontactlist', { title: 'Contact List' });
+    if(req.user)
+    {
+        res.render('content/contact', { title: 'Contact Me',user: 'Logout' });
+    }
+    else
+    {
+        res.render('content/contact', { title: 'Contact Me',user: '' });
+    }
 });
 
 
